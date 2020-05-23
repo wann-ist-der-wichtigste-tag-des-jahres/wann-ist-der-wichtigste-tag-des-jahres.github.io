@@ -14,10 +14,10 @@
             <td colspan="4" class="info"></td>
         </tr>
         <tr class="info">
-            <td id="days">120</td>
-            <td id="hours">4</td>
-            <td id="minutes">15</td>
-            <td id="seconds">32</td>
+            <td id="Tage">120</td>
+            <td id="Stunden">4</td>
+            <td id="Minuten">15</td>
+            <td id="Sekunden">32</td>
         </tr>
 
         <tr>
@@ -32,7 +32,7 @@
 <div class="moving">
     <marquee direction="down" width="1000" height="500" behavior="alternate">
         <marquee behavior="alternate" scrollamount="15" style="font-size:45px;color:rgb(245, 0, 242)">
-            JOSHIII!
+            JOSCHIII!
         </marquee>
     </marquee>
 </div>
@@ -43,10 +43,10 @@
     document.addEventListener('DOMContentLoaded', function () {
         const birthdayTime = document.querySelector('#birthdayTime');
         const countdownContainer = document.querySelector('#countdown');
-        const daysCountdown = document.querySelector('#days');
-        const hoursCountdown = document.querySelector('#hours');
-        const minutesCountdown = document.querySelector('#minutes');
-        const secondsCountdown = document.querySelector('#seconds');
+        const daysCountdown = document.querySelector('#Tage');
+        const hoursCountdown = document.querySelector('#Stunden');
+        const minutesCountdown = document.querySelector('#Minuten');
+        const secondsCountdown = document.querySelector('#Sekunden');
 
         const currentTime = new Date()
         let yearOfTheEvent = currentTime.getFullYear();
