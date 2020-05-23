@@ -1,44 +1,102 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>Is it Nina's Birthday?</title>
-  </head>
-  <body>
+    <title>Wichtigster Tag des Jahres</title>
+</head>
+<body>
 
-    <div id="countdown">
-      <table class="countdownContainer">
+<h1 align="center"  style="font-size:45px;color:rgb(245, 0, 242)">Geburtstags-Countdown</h1>
+
+<div id="countdown" align="center" style="font-size:30px" class="middle">
+    <table class="countdownContainer paddingBetweenCols">
         <tr class="info">
-          <td colspan="4" class="info">Birthday Countdown</td>
+            <td colspan="4" class="info"></td>
         </tr>
         <tr class="info">
-          <td id="days">120</td>
-          <td id="hours">4</td>
-          <td id="minutes">15</td>
-          <td id="seconds">32</td>
+            <td id="days">120</td>
+            <td id="hours">4</td>
+            <td id="minutes">15</td>
+            <td id="seconds">32</td>
         </tr>
 
         <tr>
-          <td>Days</td>
-          <td>Hours</td>
-          <td>Minutes</td>
-          <td>Seconds</td>
+            <td>Days</td>
+            <td>Hours</td>
+            <td>Minutes</td>
+            <td>Seconds</td>
         </tr>
-      </table>
-    </div>
+    </table>
+</div>
 
-    <div id="birthdayTime">
-      <h3>YES</h3>
-      <a href="https://youtu.be/cEJy2q27hVk?t=3" target="_blank">
-        <img src="https://i.imgur.com/X3Xyf76.png" id="unicornPicture">
-      </a>
+<div class="moving">
+    <marquee direction="down" width="1000" height="500" behavior="alternate">
+        <marquee behavior="alternate" scrollamount="15" style="font-size:45px;color:rgb(245, 0, 242)">
+            JOSHIII!
+        </marquee>
+    </marquee>
+</div>
 
-    </div>
-    <script src="index.js"></script>
-    <link rel="stylesheet" href="index.css">
-  </body>
+<link rel="stylesheet" href="style.css">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Staatliches');
-  </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const birthdayTime = document.querySelector('#birthdayTime');
+        const countdownContainer = document.querySelector('#countdown');
+        const daysCountdown = document.querySelector('#days');
+        const hoursCountdown = document.querySelector('#hours');
+        const minutesCountdown = document.querySelector('#minutes');
+        const secondsCountdown = document.querySelector('#seconds');
+
+        const currentTime = new Date()
+        let yearOfTheEvent = currentTime.getFullYear();
+        let eventDate = new Date( yearOfTheEvent, 4, 15 );
+        const isBirthday = currentTime.getMonth() === 4 && currentTime.getDate() === 15;
+
+        function countdown() {
+            const now = new Date()
+
+            if (now > eventDate) {
+                eventDate = new Date( yearOfTheEvent + 1, 4, 15 )
+            } else if ( now.getFullYear() === eventDate.getFullYear() + 1 ) {
+                eventDate = new Date( now.getFullYear(), 4, 15 )
+            }
+
+            const currentTime = now.getTime();
+            const eventTime = eventDate.getTime();
+            const remainingTime = eventTime - currentTime;
+
+            let seconds = Math.floor( remainingTime / 1000 );
+            let minutes = Math.floor( seconds / 60 );
+            let hours =  Math.floor( minutes / 60 );
+            let days = Math.floor( hours / 24 );
+
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+
+            if ( isBirthday ) {
+                console.log('GEBURTSTAGSZEIT!!');
+
+                countdownContainer.style.display = "none";
+                birthdayTime.style.display = "block";
+
+            } else {
+
+                daysCountdown.textContent = days;
+                hoursCountdown.textContent = hours;
+                minutesCountdown.textContent = minutes;
+                secondsCountdown.textContent = seconds;
+
+                setTimeout(countdown, 1000)
+
+            }
+
+        }
+        countdown()
+    })
+</script>
+
+</body>
+
 </html>
